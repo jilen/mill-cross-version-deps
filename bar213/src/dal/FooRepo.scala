@@ -8,6 +8,7 @@ import shapeless._
 object FooRepo {
 
   def getById(id: Long): Option[Foo] = {
+    println(Generic[Foo])
     parser.decode[Seq[Foo]](database).toOption.flatMap(_.find(_.id == id))
   }
 

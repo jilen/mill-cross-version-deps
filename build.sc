@@ -1,22 +1,8 @@
 import mill._
 import mill.scalalib._
-import mill.scalalib.api.Util
 
 trait BaseModule extends ScalaModule {
 
-  private def makeConstant(scalaV: String, platformSuffix: String): Dep => Dep = { (dep) =>
-    val realModule = dep.dep.module.withName(coursier.ModuleName(dep.artifactName(Util.scalaBinaryVersion(scalaV), scalaV, platformSuffix)))
-    val realDep =  dep.dep.withModule(realModule)
-    dep.copy(
-      dep = realDep,
-      cross = CrossVersion.Constant("", true)
-    )
-  }
-
-  def transitiveIvyDeps: T[Agg[Dep]] = T {
-    val toConstant = makeConstant(scalaVersion(), platformSuffix())
-    ivyDeps().map(toConstant) ++ mandatoryIvyDeps().map(toConstant) ++ T.traverse(moduleDeps)(_.transitiveIvyDeps)().flatten
-  }
 }
 
 object foo3 extends BaseModule {
@@ -41,7 +27,7 @@ object bar213 extends BaseModule {
 }
 
 
-object baz extends BaseModule {
+object baz3 extends BaseModule {
 
   override def scalaVersion = "3.2.2"
 
