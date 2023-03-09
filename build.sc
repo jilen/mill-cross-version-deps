@@ -41,7 +41,7 @@ object bar213 extends BaseModule {
 }
 
 
-object bar3 extends BaseModule {
+object baz extends BaseModule {
 
   override def scalaVersion = "3.2.2"
 
