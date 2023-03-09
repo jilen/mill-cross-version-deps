@@ -1,6 +1,6 @@
 * Mill cross scala version module dep
 
-#+BEGIN_SRC dot
+#+BEGIN_SRC dot :file images/dep.svg
   digraph {
     shape bar213[fillcolor=red]
     baz3 -> bar213 -> foo3;
